@@ -1,0 +1,8 @@
+﻿CREATE FUNCTION RankToScore(@rank DECIMAL(4,2))
+RETURNS DECIMAL(3,2)
+AS
+BEGIN
+	DECLARE @score DECIMAL(3,2)
+	SET @score = CASE WHEN LOG(@rank) > 3 THEN 0 ELSE 3-LOG(@rank) END
+	RETURN @score
+END
