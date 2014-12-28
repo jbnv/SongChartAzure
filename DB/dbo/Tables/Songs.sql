@@ -7,6 +7,7 @@
     [Ranks]             VARCHAR (256)  NULL,
     [Tags]              VARCHAR (MAX)  NULL,
     [Score]             DECIMAL (6, 2) NULL,
-    CONSTRAINT [PK_Songs] PRIMARY KEY CLUSTERED ([Fullname] ASC)
+    [Id] INT NOT NULL IDENTITY(1,1), 
+    CONSTRAINT [PK_Songs] PRIMARY KEY CLUSTERED ([Id])
 );
 
