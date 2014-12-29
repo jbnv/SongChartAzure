@@ -32,8 +32,26 @@ namespace API.Models
 
             o.Title = dr.GetString(dr.GetOrdinal("Title"));
 
-            //public Artist Artist { get; set; }
-            //public Genre Genre { get; set; }
+            ordinal = dr.GetOrdinal("ArtistId");
+            if (!dr.IsDBNull(ordinal))
+            {
+                Artist artist = new Artist();
+                artist.Id = dr.GetInt32(ordinal);
+                artist.Fullname = dr.GetString(dr.GetOrdinal("ArtistFullname"));
+                artist.Title = dr.GetString(dr.GetOrdinal("ArtistTitle"));
+                o.Artist = artist;
+            }
+
+            ordinal = dr.GetOrdinal("GenreId");
+            if (!dr.IsDBNull(ordinal))
+            {
+                Genre genre = new Genre();
+                genre.Id = dr.GetInt32(ordinal);
+                genre.Fullname = dr.GetString(dr.GetOrdinal("GenreFullname"));
+                genre.Title = dr.GetString(dr.GetOrdinal("GenreTitle"));
+                o.Genre = genre;
+            }
+
             //public Decimal[] Ranks { get; set;  }
 
             ordinal = dr.GetOrdinal("Score");
