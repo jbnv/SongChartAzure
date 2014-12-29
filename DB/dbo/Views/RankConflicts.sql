@@ -9,4 +9,4 @@ FROM (
 ) filter 
 INNER JOIN [SongRanks] sr ON sr.[Rank] = filter.[Rank] AND sr.[WeekId] = filter.[WeekId]
 INNER JOIN [Calendar] c ON c.[WeekId] = filter.[WeekId]
-INNER JOIN [Songs] s ON s.[Fullname] = sr.[SongFullname]
+INNER JOIN [Songs] s ON s.[Id] = sr.[SongId]

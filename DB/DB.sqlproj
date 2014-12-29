@@ -89,5 +89,10 @@
     <Build Include="dbo\Functions\ParseRanks.sql" />
     <Build Include="dbo\Procedures\Songs_GetOne.sql" />
     <Build Include="dbo\Views\Songs_Detailed.sql" />
+    <Build Include="dbo\Procedures\ScoreSongs.sql" />
+    <Build Include="dbo\Procedures\ScoreArtists.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DB.publish.xml" />
   </ItemGroup>
 </Project>
