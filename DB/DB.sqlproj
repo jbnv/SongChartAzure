@@ -72,7 +72,7 @@
     <Build Include="dbo\Views\Decades.sql" />
     <Build Include="dbo\Tables\Genres.sql" />
     <Build Include="dbo\Procedures\FillSongRanks.sql" />
-    <Build Include="dbo\Procedures\MergeSongData.sql" />
+    <Build Include="dbo\Procedures\Songs_Merge.sql" />
     <Build Include="dbo\Procedures\ProjectRanks.sql" />
     <Build Include="dbo\Views\Months.sql" />
     <Build Include="dbo\Views\MonthsOfYear.sql" />
@@ -89,10 +89,18 @@
     <Build Include="dbo\Functions\ParseRanks.sql" />
     <Build Include="dbo\Procedures\Songs_GetOne.sql" />
     <Build Include="dbo\Views\Songs_Detailed.sql" />
-    <Build Include="dbo\Procedures\ScoreSongs.sql" />
-    <Build Include="dbo\Procedures\ScoreArtists.sql" />
+    <Build Include="dbo\Procedures\Songs_Score.sql" />
+    <Build Include="dbo\Procedures\Artists_Score.sql" />
+    <Build Include="dbo\Procedures\Artists_Merge.sql" />
+    <Build Include="dbo\Procedures\Genres_Merge.sql" />
+    <Build Include="dbo\Views\Artists_Detailed.sql" />
+    <Build Include="dbo\Procedures\Genres_Score.sql" />
+    <Build Include="dbo\Procedures\Artists_GetOne.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="DB.refactorlog" />
   </ItemGroup>
 </Project>

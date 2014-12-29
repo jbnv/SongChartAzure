@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [MergeSongData] (
+﻿CREATE PROCEDURE [Songs_Merge] (
 	@Fullname [varchar](10),
 	@Title [varchar](128),
 	@ArtistFullname [varchar](48),
@@ -15,13 +15,18 @@ BEGIN
     ON (tgt.[Fullname] = src.[Fullname])
     WHEN MATCHED THEN
         UPDATE	SET [Title] = src.[Title],
-				[ArtistFullname] = src.[ArtistFullname],
+				[ArtistId] = (SELECT [Id] FROM [Artists] WHERE [Fullname] = src.[ArtistFullname]),
 				[DebutDateFullname] = src.[DebutDateFullname],
-				[GenreFullname] = src.[GenreFullname],
+				[GenreId] = (SELECT [Id] FROM [Genres] WHERE [Fullname] = src.[GenreFullname]),
 				[Ranks] = src.[Ranks],
 				[Tags] = src.[Tags]
 	WHEN NOT MATCHED THEN
-		INSERT ([Fullname],[Title],[ArtistFullname],[DebutDateFullname],[GenreFullname],[Ranks],[Tags])
-		VALUES (src.[Fullname],src.[Title],src.[ArtistFullname],src.[DebutDateFullname],src.[GenreFullname],src.[Ranks],src.[Tags])
+		INSERT ([Fullname],[Title],[ArtistId],[DebutDateFullname],[GenreId],[Ranks],[Tags])
+		VALUES (src.[Fullname],src.[Title],
+				(SELECT [Id] FROM [Artists] WHERE [Fullname] = src.[ArtistFullname]),
+				src.[DebutDateFullname],
+				(SELECT [Id] FROM [Genres] WHERE [Fullname] = src.[GenreFullname]),
+				src.[Ranks],
+				src.[Tags])
 	;
 END;
