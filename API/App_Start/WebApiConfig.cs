@@ -10,13 +10,14 @@ namespace API
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            //config.EnableSystemDiagnosticsTracing();
 
             // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 name: "SongChartsAPI",
-                routeTemplate: "{controller}/{fullname}"
+                routeTemplate: "{controller}/{id}"
             );
         }
     }

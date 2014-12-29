@@ -16,27 +16,19 @@ namespace API.Controllers
     {
         [AllowAnonymous]
         [HttpGet]
-        public Song Get([FromUri] string fullname)
+        public Song Get([FromUri] int id)
         {
-            //if (fullname.Substring(0, 2) != "s:")
-            //{
-            //    fullname = "s:" + fullname;
-            //}
+            GetAction<Song> getAction = new GetAction<Song>();
+            getAction.AddParameter(new SqlParameter("@id", id));
+            getAction.ProcedureName = "dbo.Songs_GetOne";
+            getAction.IDataRecordFunc = Song.FromDataRecord;
 
-            //Song song;
-            //GetAction<Song> getAction = new GetAction<Song>();
-            //getAction.AddParameter(new SqlParameter("@Fullname", fullname));
-            //getAction.ProcedureName = "Songs_GetOne";
-            //getAction.IDataRecordFunc = Song.FromDataRecord;
-            //song = getAction.Execute()[0];
-
-            ////if (song == null)
-            ////{
-            ////    return NotFound();
-            ////}
-            ////return Ok(song);
-            //return song;
-            return new Song();
+            Song[] hits = getAction.Execute();
+            if (hits.Length == 1)
+                return hits[0];
+            else
+                return null;
+            //return new Song();
         }
     
 
