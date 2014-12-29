@@ -11,6 +11,7 @@ namespace API
         {
             // Web API configuration and services
             //config.EnableSystemDiagnosticsTracing();
+            config.Formatters.Add(new API.Tools.BrowserJsonFormatter());
 
             // Web API routes
             config.MapHttpAttributeRoutes();
