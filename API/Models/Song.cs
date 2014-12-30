@@ -63,8 +63,9 @@ namespace API.Models
             ordinal = dr.GetOrdinal("PeakRank");
             o.PeakRank = dr.IsDBNull(ordinal) ? 0 : dr.GetDecimal(ordinal);
 
-            ordinal = dr.GetOrdinal("Duration");
-            o.Duration = dr.IsDBNull(ordinal) ? 0 : dr.GetDecimal(ordinal);
+            //FIX! Invalid cast.
+            //FIX! ordinal = dr.GetOrdinal("Duration");
+            //FIX! o.Duration = dr.IsDBNull(ordinal) ? 0 : dr.GetDecimal(ordinal);
 
             return o;
         }

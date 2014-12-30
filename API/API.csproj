@@ -108,8 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ChartsController.cs" />
+    <Compile Include="Controllers\SongChartsController.cs" />
     <Compile Include="Controllers\SongsController.cs" />
+    <Compile Include="Controllers\UpdateDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -118,6 +119,8 @@
     <Compile Include="Models\IChart.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\BrowserJsonFormatter.cs" />
+    <Compile Include="Tools\SongChartsDatabase.cs" />
     <Compile Include="Tools\GetAction.cs" />
   </ItemGroup>
   <ItemGroup>

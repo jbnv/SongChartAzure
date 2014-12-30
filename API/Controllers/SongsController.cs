@@ -23,8 +23,8 @@ namespace API.Controllers
             getAction.ProcedureName = "dbo.Songs_GetOne";
             getAction.IDataRecordFunc = Song.FromDataRecord;
 
-            Song[] hits = getAction.Execute();
-            if (hits.Length == 1)
+            List<Song> hits = getAction.Execute();
+            if (hits.Count == 1)
                 return hits[0];
             else
                 return null;

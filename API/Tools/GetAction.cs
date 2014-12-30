@@ -24,7 +24,7 @@ namespace API.Tools
             _parameters.Add(parameter);
         }
 
-        public  T[] Execute() {
+        public  List<T> Execute() {
             List<T> result = new List<T>();
             SqlConnection conn = SongChartsDatabase.Connection();
             SqlCommand command;
@@ -60,8 +60,7 @@ namespace API.Tools
                 conn = null;
             }
 
-            if (result == null) return null;
-            return result.ToArray();
+            return result;
         }
 
 
