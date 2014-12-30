@@ -6,7 +6,7 @@ AS
 		FROM [Songs] 
 		WHERE [ArtistId]=[Artists].[Id]
 	), [Score] = (
-		SELECT SUM([Score]) 
+		SELECT COALESCE(SUM([Score]),0)
 		FROM [Songs] 
 		WHERE [ArtistId]=[Artists].[Id]
 	)
