@@ -23,5 +23,5 @@ LEFT OUTER JOIN (
 	SELECT [SongId],[Rank] FROM [SongRanks] WHERE [WeekOrdinal] = 0
 ) debut ON debut.[SongId] = s.[Id]
 LEFT OUTER JOIN (
-	SELECT [SongId],MAX([Rank]) AS [PeakRank],COUNT(*) AS [Duration] FROM [SongRanks] GROUP BY [SongId]
+	SELECT [SongId],MIN([Rank]) AS [PeakRank],COUNT(*) AS [Duration] FROM [SongRanks] GROUP BY [SongId]
 ) sAgg ON sAgg.[SongId] = s.[Id]

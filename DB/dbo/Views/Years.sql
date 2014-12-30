@@ -1,7 +1,8 @@
-﻿
-CREATE VIEW [Years]
+﻿CREATE VIEW [Years]
 AS
-SELECT d.[Number]+u.[Number] AS [Number], CAST(d.[Number]+u.[Number] AS VARCHAR) AS [Slug]
+SELECT	d.[Number] AS [Decade],
+		d.[Number]+u.[Number] AS [Number], 
+		CAST(d.[Number]+u.[Number] AS VARCHAR) AS [Slug]
 FROM [Decades] d
 CROSS JOIN (
 	SELECT CAST(0 AS TINYINT) AS [Number]

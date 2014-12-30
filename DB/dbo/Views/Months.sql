@@ -1,8 +1,7 @@
-﻿
-
-CREATE VIEW [dbo].[Months]
+﻿CREATE VIEW [dbo].[Months]
 AS
 SELECT 
+	y.[Decade],
 	y.[Number] AS [Year], 
 	m.[Ordinal] AS [MonthOrdinal], 
 	m.[Name]+' '+CAST(y.[Number] AS VARCHAR) AS [Name],
