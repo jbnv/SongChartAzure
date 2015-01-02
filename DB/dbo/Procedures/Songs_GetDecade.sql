@@ -18,14 +18,5 @@ SELECT		[Id],
 			[PeakRank],
 			[Duration]
 FROM		[dbo].[Songs_Detailed] s
-INNER JOIN (
-	SELECT 'calendar:'+CAST(@decade AS VARCHAR)+'s' AS [Fullname]
-	UNION
-	SELECT 'calendar:'+[Slug]
-	FROM [Years]
-	WHERE [Decade] = @decade
-	UNION
-	SELECT 'calendar:'+[Slug]
-	FROM [Months]
-	WHERE [Decade] = @decade
-) fltr ON [DebutDateFullname] = fltr.[Fullname]
+INNER JOIN [DecadeFullnames] dfn ON [DebutDateFullname] = dfn.[Fullname]
+WHERE dfn.DecadeNumber = @decade

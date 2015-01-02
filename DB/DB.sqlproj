@@ -99,6 +99,8 @@
     <Build Include="dbo\Procedures\Songs_GetDecade.sql" />
     <Build Include="dbo\Procedures\Songs_GetYear.sql" />
     <Build Include="dbo\Procedures\Songs_GetMonth.sql" />
+    <Build Include="dbo\Views\DecadeSummaries.sql" />
+    <Build Include="dbo\Views\DecadeFullnames.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />
