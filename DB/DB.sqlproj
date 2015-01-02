@@ -103,6 +103,7 @@
     <Build Include="dbo\Views\DecadeFullnames.sql" />
     <Build Include="dbo\Views\YearFullnames.sql" />
     <Build Include="dbo\Views\YearSummaries.sql" />
+    <Build Include="dbo\Views\MonthSummaries.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />
