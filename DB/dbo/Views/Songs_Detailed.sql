@@ -1,8 +1,10 @@
-﻿CREATE VIEW [dbo].[Songs_Detailed]
+﻿CREATE alter VIEW [dbo].[Songs_Detailed]
 AS 
 SELECT		s.[Id],
 			s.[Fullname],
 			s.[Title],
+			LEN(s.[Title]) AS [Title_CharacterCount],
+			LEN(s.[Title])-LEN(REPLACE(s.[Title],' ','')) AS [Title_WordCount],
 			s.[ArtistId],
 			a.[Fullname] AS [ArtistFullname],
 			a.[Title] AS [ArtistTitle],

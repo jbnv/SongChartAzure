@@ -104,6 +104,12 @@
     <Build Include="dbo\Views\YearFullnames.sql" />
     <Build Include="dbo\Views\YearSummaries.sql" />
     <Build Include="dbo\Views\MonthSummaries.sql" />
+    <Build Include="dbo\Views\Songs_OneWordTitles.sql" />
+    <Build Include="dbo\Views\Songs_LongTitles.sql" />
+    <Build Include="dbo\Views\Songs_ShortestTitles.sql" />
+    <Build Include="dbo\Views\Songs_LongestTitles.sql" />
+    <Build Include="dbo\Views\SongTitleWords.sql" />
+    <Build Include="dbo\Views\SongTitleWords_Unique.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />
