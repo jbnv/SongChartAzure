@@ -15,13 +15,13 @@ BEGIN
     ON (tgt.[Fullname] = src.[Fullname])
     WHEN MATCHED THEN
         UPDATE	SET [Title] = src.[Title],
-				[ArtistId] = (SELECT [Id] FROM [Artists] WHERE [Fullname] = src.[ArtistFullname]),
+				[ArtistID] = (SELECT [Id] FROM [Artists] WHERE [Fullname] = src.[ArtistFullname]),
 				[DebutDateFullname] = src.[DebutDateFullname],
 				[GenreId] = (SELECT [Id] FROM [Genres] WHERE [Fullname] = src.[GenreFullname]),
 				[Ranks] = src.[Ranks],
 				[Tags] = src.[Tags]
 	WHEN NOT MATCHED THEN
-		INSERT ([Fullname],[Title],[ArtistId],[DebutDateFullname],[GenreId],[Ranks],[Tags])
+		INSERT ([Fullname],[Title],[ArtistId],[DebutDateFullname],[GenreID],[Ranks],[Tags])
 		VALUES (src.[Fullname],src.[Title],
 				(SELECT [Id] FROM [Artists] WHERE [Fullname] = src.[ArtistFullname]),
 				src.[DebutDateFullname],

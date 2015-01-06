@@ -4,7 +4,7 @@ AS
 SELECT		[Id],
 			[Fullname],
 			[Title],
-			[GenreId],
+			[GenreID],
 			[GenreTitle],
 			[Tags],
 			[SongCount]

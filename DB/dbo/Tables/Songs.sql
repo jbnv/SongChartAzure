@@ -10,6 +10,6 @@
     [Id] INT NOT NULL IDENTITY(1,1), 
     CONSTRAINT [PK_Songs] PRIMARY KEY CLUSTERED ([Id]), 
     CONSTRAINT [FK_Songs_Artists] FOREIGN KEY ([ArtistID]) REFERENCES [Artists]([Id]), 
-    CONSTRAINT [FK_Songs_Genres] FOREIGN KEY ([GenreId]) REFERENCES [Genres]([Id])
+    CONSTRAINT [FK_Songs_Genres] FOREIGN KEY ([GenreID]) REFERENCES [Genres]([Id])
 );
 

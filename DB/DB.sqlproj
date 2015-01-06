@@ -108,8 +108,11 @@
     <Build Include="dbo\Views\Songs_LongTitles.sql" />
     <Build Include="dbo\Views\Songs_ShortestTitles.sql" />
     <Build Include="dbo\Views\Songs_LongestTitles.sql" />
-    <Build Include="dbo\Views\SongTitleWords.sql" />
     <Build Include="dbo\Views\SongTitleWords_Unique.sql" />
+    <Build Include="dbo\Tables\Calculated Tables\SongTitleWords.sql" />
+    <Build Include="dbo\Tables\SongFlags.sql" />
+    <Build Include="dbo\Procedures\SongTitleWords_Update.sql" />
+    <Build Include="dbo\Views\SongTitleWords_Counts.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />

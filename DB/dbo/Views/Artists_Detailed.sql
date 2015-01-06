@@ -3,7 +3,7 @@ AS
 SELECT		a.[Id],
 			a.[Fullname],
 			a.[Title],
-			[GenreId],
+			[GenreID],
 			g.[Title] AS [GenreTitle],
 			[Tags],
 			a.[SongCount],

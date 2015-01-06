@@ -4,10 +4,10 @@ AS
 	SET [SongCount] = (
 		SELECT COUNT(*)
 		FROM [Songs] 
-		WHERE [GenreId]=[Genres].[Id]
+		WHERE [GenreID]=[Genres].[Id]
 	), [Score] = (
 		SELECT SUM([Score]) 
 		FROM [Songs] 
-		WHERE [GenreId]=[Genres].[Id]
+		WHERE [GenreID]=[Genres].[Id]
 	)
 RETURN 0

@@ -11,7 +11,7 @@ BEGIN
     ON (tgt.[Fullname] = src.[Fullname])
     WHEN MATCHED THEN
         UPDATE	SET [Title] = src.[Title],
-				[GenreId] = (SELECT [Id] FROM [Genres] WHERE [Fullname]=src.[GenreFullname]),
+				[GenreID] = (SELECT [Id] FROM [Genres] WHERE [Fullname]=src.[GenreFullname]),
 				[Tags] = src.[Tags]
 	WHEN NOT MATCHED THEN
 		INSERT ([Fullname],[Title],[GenreId],[Tags])

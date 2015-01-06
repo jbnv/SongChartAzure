@@ -1,3 +1,3 @@
 ﻿CREATE VIEW [dbo].[SongTitleWords_Unique]
 AS 
-SELECT [Word] FROM [SongTitleWords] WHERE [InstanceCount] = 1
+SELECT [Word] FROM [SongTitleWords_Counts] WHERE [InstanceCount] = 1
