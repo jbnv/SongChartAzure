@@ -1,0 +1,21 @@
+{
+    "environmentSettings": {
+        "webSite": {
+            "name": "SongChartsAPI",
+            "location": "South Central US"
+        },
+        "databases": [
+            {
+                "connectionStringName": "SongChartsDB",
+                "databaseName": "SongCharts",
+                "serverName": "xiuwv141zm",
+                "user": "jbnv",
+                "password": "Raichu12",
+                "edition": "",
+                "size": "",
+                "collation": "",
+                "location": "South Central US"
+            }
+        ]
+    }
+}
