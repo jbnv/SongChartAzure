@@ -35,6 +35,12 @@ namespace API
             );
 
             config.Routes.MapHttpRoute(
+                name: "Home",
+                routeTemplate: "home",
+                defaults: new { controller = "Home" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "Other",
                 routeTemplate: "{controller}/{id}"
             );
