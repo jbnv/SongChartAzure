@@ -1,9 +1,33 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
+﻿<h2>Decades/Years</h2>
 
-</body>
-</html>
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>Decade</th>
+            <th>Count</th>
+            <th>Years</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: decades">
+        <tr>
+            <td><a data-bind="attr: {href: $data.Route}, text: $data.Title"></a></td>
+            <td data-bind="text: $data.SongCount"></td>
+            <td data-bind="foreachproperty: $data.Years">
+                <div class="col-xs-1">
+                    <a data-bind="attr: {href: $data.$value.Route}, text: $data.$value.Title"></a>
+                    <span data-bind="text: $data.$value.SongCount"></span>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<!--<h2>Months TODO</h2>
+
+<h2>Top Artists TODO</h2>
+
+<h2>Etc.</h2>
+
+<p>Possibly other top lists. Wordcloud.</p>-->
+

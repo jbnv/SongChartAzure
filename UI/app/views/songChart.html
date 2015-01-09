@@ -1,0 +1,115 @@
+﻿<h1 style="text-align: center">
+    <a class="btn btn-default" data-bind="attr: { href: context.previousRoute }"><i class="fa fa-chevron-left"></i></a>
+    <span data-bind="text: context.title"></span>
+    <a class="btn btn-default" data-bind="attr: { href: context.nextRoute}"><i class="fa fa-chevron-right"></i></a>
+</h1>
+
+<table class="table table-condensed table-hover" data-bind="visible: data().length > 0">
+    <thead>
+        <tr>
+            <th data-bind="hidden: columns.rank.hidden">
+                <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Rank</a>
+                    <ul class="dropdown-menu">
+                        <li data-bind="click: setSort('rank',true)"><a href="#"><i class="fa fa-sort-numeric-asc"></i> Order Ascending</a></li>
+                        <li data-bind="click: setSort('rank',false)"><a href="#"><i class="fa fa-sort-numeric-desc"></i> Order Descending</a></li>
+                        <li data-bind="toggle: columns.rank.hidden"><a href="#"><i class="fa fa-remove"></i> Remove</a></li>
+                    </ul>
+                </div>
+            </th>
+            <th data-bind="hidden: columns.title.hidden">
+                <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Title</a>
+                    <ul class="dropdown-menu">
+                        <li data-bind="click: setSort('title',true)"><a href="#"><i class="fa fa-sort-alpha-asc"></i> Order Ascending</a></li>
+                        <li data-bind="click: setSort('title',false)"><a href="#"><i class="fa fa-sort-alpha-desc"></i> Order Descending</a></li>
+                        <li data-bind="toggle: columns.title.hidden"><a href="#"><i class="fa fa-remove"></i> Remove</a></li>
+                    </ul>
+                </div>
+            </th>
+            <th data-bind="hidden: columns.artist.hidden">
+                <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Artist</a>
+                    <ul class="dropdown-menu">
+                        <li data-bind="click: setSort('artistObject.name',true)"><a href="#"><i class="fa fa-sort-alpha-asc"></i> Order Ascending</a></li>
+                        <li data-bind="click: setSort('artistObject.name',false)"><a href="#"><i class="fa fa-sort-alpha-desc"></i> Order Descending</a></li>
+                        <li data-bind="toggle: columns.artist.hidden"><a href="#"><i class="fa fa-remove"></i> Remove</a></li>
+                    </ul>
+                </div>
+            </th>
+            <th data-bind="hidden: columns.debutDate.hidden">Date</th>
+            <th data-bind="hidden: columns.score.hidden">
+                <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Score</a>
+                    <ul class="dropdown-menu">
+                        <li data-bind="click: setSort('score',true)"><a href="#"><i class="fa fa-sort-numeric-asc"></i> Order Ascending</a></li>
+                        <li data-bind="click: setSort('score',false)"><a href="#"><i class="fa fa-sort-numeric-desc"></i> Order Descending</a></li>
+                        <li data-bind="toggle: columns.score.hidden"><a href="#"><i class="fa fa-remove"></i> Remove</a></li>
+                    </ul>
+                </div>
+            </th>
+            <th data-bind="hidden: columns.debutRank.hidden">
+                <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">D</a>
+                    <ul class="dropdown-menu">
+                        <li><b>Debut Rank (D)</b>
+                        <li data-bind="click: setSort('debutRank',true)"><a href="#"><i class="fa fa-sort-numeric-asc"></i> Order Ascending</a></li>
+                        <li data-bind="click: setSort('debutRank',false)"><a href="#"><i class="fa fa-sort-numeric-desc"></i> Order Descending</a></li>
+                        <li data-bind="toggle: columns.debutRank.hidden"><a href="#"><i class="fa fa-remove"></i> Remove</a></li>
+                    </ul>
+                </div>
+            </th>
+            <th data-bind="hidden: columns.peakRank.hidden">
+                <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">P</a>
+                    <ul class="dropdown-menu">
+                        <li><b>Peak Rank (P)</b></li>
+                        <li data-bind="click: setSort('peakRank',true)"><a href="#"><i class="fa fa-sort-numeric-asc"></i> Order Ascending</a></li>
+                        <li data-bind="click: setSort('peakRank',false)"><a href="#"><i class="fa fa-sort-numeric-desc"></i> Order Descending</a></li>
+                        <li data-bind="toggle: columns.peakRank.hidden"><a href="#"><i class="fa fa-remove"></i> Remove</a></li>
+                    </ul>
+                </div>
+            </th>
+            <th data-bind="hidden: columns.duration.hidden">
+                <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">M</a>
+                    <ul class="dropdown-menu">
+                        <li><b>Duration (Months) (M)</b></li>
+                        <li data-bind="click: setSort('duration',true)"><a href="#"><i class="fa fa-sort-numeric-asc"></i> Order Ascending</a></li>
+                        <li data-bind="click: setSort('duration',false)"><a href="#"><i class="fa fa-sort-numeric-desc"></i> Order Descending</a></li>
+                        <li data-bind="toggle: columns.duration.hidden"><a href="#"><i class="fa fa-remove"></i> Remove</a></li>
+                    </ul>
+                </div>
+            </th>
+            <th data-bind="hidden: columns.timeToPeak.hidden">
+                <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">H</a>
+                    <ul class="dropdown-menu">
+                        <li><b>Time to Peak (H)</b></li>
+                        <li data-bind="click: setSort('timeToPeak',true)"><a href="#"><i class="fa fa-sort-numeric-asc"></i> Order Ascending</a></li>
+                        <li data-bind="click: setSort('timeToPeak',false)"><a href="#"><i class="fa fa-sort-numeric-desc"></i> Order Descending</a></li>
+                        <li data-bind="toggle: columns.timeToPeak.hidden"><a href="#"><i class="fa fa-remove"></i> Remove</a></li>
+                    </ul>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-bind="foreach: data">
+            <td data-bind="hidden: columns.rank.hidden"><span data-bind="text: rank"></span></td>
+            <td data-bind="hidden: columns.title.hidden"><a href="#song(song)"><span data-bind="text: title"></span></a></td>
+            <td data-bind="hidden: columns.artistName.hidden">
+                <!-- ko with: artist -->
+                <a href="#artist(artist)" data-bind="text: title"></a>
+                <!--<i data-bind="hidden: song.artistObject.$resolved" class="fa fa-spinner fa-spin"></i>-->
+                <!-- /ko -->
+            </td>
+            <td data-bind="hidden: columns.debutDate.hidden"><span data-bind="text: debutDate"></span></td>
+            <td data-bind="hidden: columns.score.hidden"><span data-bind="text: score"></span></td>
+            <td data-bind="hidden: columns.debutRank.hidden"><span data-bind="text: debutRank"></span></td>
+            <td data-bind="hidden: columns.peakRank.hidden"><span data-bind="text: peakRank"></span></td>
+            <td data-bind="hidden: columns.duration.hidden"><span data-bind="text: duration"></span></td>
+            <td data-bind="hidden: columns.timeToPeak.hidden"><span data-bind="text: timeToPeak"></span></td>
+        </tr>
+    </tbody>
+</table>

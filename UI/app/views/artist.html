@@ -1,11 +1,19 @@
-﻿<!DOCTYPE html>
+﻿<!-- ko with: data-->
+<h1>
+    <span data-bind="text: title"></span><br />
+</h1>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+<div>
+    <table class="table table-condensed table-hover">
+        <tr><td>Genre</td><td><span data-bind="text: genre().title"></span></td></tr>
+        <tr><td>Origin</td><td><span data-bind="text: origin"></span></td></tr>
+        <!--<tr><td>Song Count</td><td><span data-bind="text: songCount"></span></td></tr>-->
+        <tr><td>Total Score</td><td><span data-bind="text: score().toFixed(2)"></span></td></tr>
+        <tr><td>Debut Date</td><td><span data-bind="text: date"></span></td></tr>
+        <!--<tr><td>Final Date</td><td><span data-bind="text: finalDate"></span></td></tr>-->
+    </table>
+</div>
 
-</body>
-</html>
+<div>
+    <!--TODO List of the artist's songs, with scores.-->
+</div>

@@ -1,0 +1,29 @@
+﻿<!-- ko with: data-->
+<h1>
+    <span data-bind="text: title"></span><br />
+    <small><a data-bind="attr: { href: '#artist/'+artist().fullname }"><span data-bind="text: artist().title"></span></a></small>
+</h1>
+
+<div>
+    <table class="table table-condensed table-hover">
+        <tr><td>Genre</td><td><span data-bind="text: genre().title"></span></td></tr>
+        <tr><td>Source</td><td><span data-bind="text: source"></span></td></tr>
+        <tr><td>Debut Date</td><td><span data-bind="text: date"></span></td></tr>
+        <tr><td>Total Score</td><td><span data-bind="text: score().toFixed(2)"></span></td></tr>
+        <tr><td>Debut/Peak Rank</td><td><span data-bind="text: debutRank"></span> / <span data-bind="text: peakRank"></span></td></tr>
+        <tr><td>Duration</td><td><span data-bind="text: duration"></span></td></tr>
+        <tr><td>Time to Peak</td><td><span data-bind="text: timeToPeak().toFixed(2)"></span></td></tr>
+    </table>
+</div>
+
+<div>
+    <table class="table table-condensed table-hover">
+        <tr><th>Ranks</th><th>Wk 1</th><th>Wk 2</th><th>Wk 3</th><th>Wk 4</th></tr>
+        <tr data-bind="foreach: month in pivot(pointRanks)">
+            <td>Month <span data-bind="text: $index+1"></span></td>
+            <td data-bind="foreach: value in month"><span data-bind="text: value().toFixed(1)"></span></td>
+        </tr>
+    </table>
+</div>
+
+<!-- /ko -->

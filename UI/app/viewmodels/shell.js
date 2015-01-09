@@ -9,11 +9,12 @@
         activate: function () {
             router.map([
                 { route: '', title:'Home Screen', moduleId: 'viewmodels/home', nav: true },
-                { route: 'decade/:decade', title: 'Decade Chart', moduleId: 'viewmodels/decade', nav: true },
-                { route: 'year/:year', title: 'Year Chart', moduleId: 'viewmodels/year', nav: true },
-                { route: 'month/:year/:month', title: 'Month Chart', moduleId: 'viewmodels/month', nav: true },
-                { route: 'artist/:artist', title: 'Arist Chart', moduleId: 'viewmodels/artist', nav: true },
-                { route: 'genre/:genre', title: 'Genre Chart', moduleId: 'viewmodels/genre', nav: true }
+                { route: 'decade/:decade', title: 'Decade Chart', moduleId: 'viewmodels/songChart', nav: true },
+                { route: 'year/:year', title: 'Year Chart', moduleId: 'viewmodels/songChart', nav: true },
+                { route: 'month/:year/:month', title: 'Month Chart', moduleId: 'viewmodels/songChart', nav: true },
+                { route: 'song/:id', title: 'Song Details', moduleId: 'viewmodels/artist', nav: true },
+                { route: 'artist/:id', title: 'Artist Details', moduleId: 'viewmodels/artist', nav: true },
+                { route: 'genre/:id', title: 'Genre Details', moduleId: 'viewmodels/genre', nav: true }
             ]).buildNavigationModel();
             
             return router.activate();

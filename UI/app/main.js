@@ -6,7 +6,10 @@
         'transitions' : '../lib/durandal/js/transitions',
         'knockout': '../lib/knockout/knockout-3.1.0',
         'bootstrap': '../lib/bootstrap/js/bootstrap',
-        'jquery': '../lib/jquery/jquery-1.9.1'
+        'jquery': '../lib/jquery/jquery-1.9.1',
+        'toastr': '../lib/toastr/toastr',
+        'classes': 'classes',
+        'tools': 'tools'
     },
     shim: {
         'bootstrap': {
@@ -16,7 +19,9 @@
     }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator'],  function (system, app, viewLocator) {
+define(
+    ['durandal/system', 'durandal/app', 'durandal/viewLocator', 'tools/bindings'],
+    function (system, app, viewLocator) {
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");

@@ -39,6 +39,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.2\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -48,6 +59,13 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.2\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -57,6 +75,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\classes\Chart.js" />
+    <Content Include="app\classes\ChartContext.js" />
+    <Content Include="app\classes\Decade.js" />
+    <Content Include="app\classes\Months.js" />
+    <Content Include="app\viewmodels\song.js" />
+    <Content Include="app\views\song.html" />
     <Content Include="lib\bootstrap\css\bootstrap-theme.css.map" />
     <Content Include="lib\bootstrap\css\bootstrap.css.map" />
     <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
@@ -67,6 +91,8 @@
     <Content Include="lib\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="lib\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="lib\jquery\jquery-1.9.1.min.map" />
+    <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\songcharts.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -75,21 +101,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\classes\Artist.js" />
+    <Content Include="app\classes\DataTable.js" />
+    <Content Include="app\classes\Song.js" />
     <Content Include="app\main.js" />
+    <Content Include="app\tools\bindings.js" />
     <Content Include="app\viewmodels\artist.js" />
-    <Content Include="app\viewmodels\decade.js" />
+    <Content Include="app\classes\common.js" />
+    <Content Include="app\viewmodels\songChart.js" />
     <Content Include="app\viewmodels\genre.js" />
     <Content Include="app\viewmodels\home.js" />
-    <Content Include="app\viewmodels\month.js" />
     <Content Include="app\viewmodels\shell.js" />
-    <Content Include="app\viewmodels\year.js" />
     <Content Include="app\views\artist.html" />
-    <Content Include="app\views\decade.html" />
+    <Content Include="app\views\songChart.html" />
     <Content Include="app\views\genre.html" />
     <Content Include="app\views\home.html" />
-    <Content Include="app\views\month.html" />
     <Content Include="app\views\shell.html" />
-    <Content Include="app\views\year.html" />
     <Content Include="css\ie10mobile.css" />
     <Content Include="css\starterkit.css" />
     <Content Include="index.html" />
@@ -132,6 +159,9 @@
     <Content Include="lib\require\r.js" />
     <Content Include="lib\require\require.js" />
     <Content Include="lib\require\text.js" />
+    <Content Include="lib\toastr\toastr-icon.png" />
+    <Content Include="lib\toastr\toastr.css" />
+    <Content Include="lib\toastr\toastr.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
