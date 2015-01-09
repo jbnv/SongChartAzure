@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace API
 {
@@ -9,6 +10,14 @@ namespace API
     {
         public static void Register(HttpConfiguration config)
         {
+            // Cross-browser restriction.
+            EnableCorsAttribute cors = new EnableCorsAttribute("http://localhost:50775", "*", "*");
+            //TODO? cors.SupportsCredentials = true;
+            config.EnableCors(cors);
+
+            // Authorize.
+            //TODO? config.Filters.Add(new AuthorizeAttribute());
+
             // Web API configuration and services
             //config.EnableSystemDiagnosticsTracing();
             config.Formatters.Add(new API.Tools.BrowserJsonFormatter());

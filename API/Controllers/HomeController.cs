@@ -6,30 +6,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using API.Models;
 
 namespace API.Controllers
 {
-    public class DecadeCount
-    {
-        public short decade;
-        public int count;
-    }
-
-    public class YearCount
-    {
-        public short year;
-        public int count;
-    }
+    // Format the data here so that it doesn't have to be formatted on the page.
 
     public class HomePageData
     {
-        public List<DecadeCount> decades;
-        public List<YearCount> years;
+        public List<Decade> Decades;
+        public Dictionary<short, Year> Years;
+        // Separate lists of numbers to facilitate iteration.
+        public List<short> DecadeNumbers;
+        public List<short> YearNumbers;
 
         public HomePageData()
         {
-            decades = new List<DecadeCount>();
-            years = new List<YearCount>();
+            this.Decades = new List<Decade>();
+            this.Years = new Dictionary<short, Year>();
         }
     }
 
@@ -45,47 +39,67 @@ namespace API.Controllers
             SqlCommand command;
             SqlDataReader reader;
 
-            int groupOrdinal;
-            int countOrdinal;
-
             // Get the data.
+
             conn.Open();
 
-            command = new SqlCommand("SELECT [DecadeNumber],[SongCount] FROM [dbo].[DecadeSummaries]", conn);
+            command = new SqlCommand("SELECT [DecadeNumber],[SongCount] FROM [dbo].[DecadeSummaries] ORDER BY [DecadeNumber]", conn);
             command.CommandType = CommandType.Text;
             command.CommandTimeout = 200;
 
             reader  = command.ExecuteReader();
-            groupOrdinal = reader.GetOrdinal("DecadeNumber");
-            countOrdinal = reader.GetOrdinal("SongCount");
             while (reader.Read())
             {
-                DecadeCount o = new DecadeCount();
-                o.decade = (short) reader.GetSqlInt16(groupOrdinal);
-                o.count = (int)reader.GetInt32(countOrdinal);
-                data.decades.Add(o);
+                Decade decade = new Decade();
+                decade.GetSummaryData(reader);
+                data.Decades.Add(decade);
             }
             reader.Close();
 
-            command = new SqlCommand("SELECT [YearNumber],[SongCount] FROM [dbo].[YearSummaries]", conn);
+            command = new SqlCommand("SELECT [YearNumber],[SongCount] FROM [dbo].[YearSummaries] ORDER BY [YearNumber]", conn);
             command.CommandType = CommandType.Text;
             command.CommandTimeout = 200;
 
             reader  = command.ExecuteReader();
-            groupOrdinal = reader.GetOrdinal("YearNumber");
-            countOrdinal = reader.GetOrdinal("SongCount");
             while (reader.Read())
             {
-                YearCount o = new YearCount();
-                o.year = (short)reader.GetSqlInt16(groupOrdinal);
-                o.count = (int)reader.GetInt32(countOrdinal);
-                data.years.Add(o);
+                Year year = new Year();
+                year.GetSummaryData(reader);
+                data.Years.Add(year.Number, year);
             }
             reader.Close();
 
             //TODO Get month data.
 
             conn.Close();
+
+            // Massage data and form output object.
+
+            //TEMP? data.DecadeNumbers = data.Decades.Keys.ToList();
+            //TEMP? data.YearNumbers = data.Years.Keys.ToList();
+
+            // Put the year data into the respective decade objects.
+            foreach (Decade decade in data.Decades)
+            {
+                short decadeNumber = decade.Number;
+                // decade.Years == {}
+                short[] yearOrdinals = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+                foreach (short y in yearOrdinals)
+                {
+                    short yearNumber = (short)(decadeNumber + y);
+                    Year year;
+                    if (data.Years.ContainsKey(yearNumber))
+                    {
+                        year = data.Years[yearNumber];
+                    }
+                    else
+                    {
+                        year = new Year(yearNumber);
+                    }
+                    decade.Years.Add(yearNumber, year);
+                }
+            }
+
             return data;
         }
     }
