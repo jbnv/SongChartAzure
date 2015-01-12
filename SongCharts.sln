@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{42A65350-5101-42A0-83EC-98AF39030403}"
 EndProject
@@ -10,6 +10,26 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{3A3D1318-EF57-4C98-A58D-807974A01797}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI.Tests", "UI.Tests\UI.Tests.csproj", "{1713E19C-B154-444B-99E2-0AC0891A2FF4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{1431FCAB-B1E6-4946-9D62-6065EEC9857E}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{5634BDB6-D462-4423-8273-134C62767408}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\API-WAWS-dev.json = PublishScripts\Configurations\API-WAWS-dev.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{9AFF1D69-99E5-4C52-AC01-8DF2A2F45785}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B60DB459-2085-418D-B796-C1ABFEAC20A6}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateScoresWebjob", "UpdateScoresWebjob\UpdateScoresWebjob.csproj", "{45DBBD2C-0A71-4EC1-9448-38DA2D78936C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,8 +51,19 @@ Global
 		{1713E19C-B154-444B-99E2-0AC0891A2FF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1713E19C-B154-444B-99E2-0AC0891A2FF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1713E19C-B154-444B-99E2-0AC0891A2FF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AFF1D69-99E5-4C52-AC01-8DF2A2F45785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AFF1D69-99E5-4C52-AC01-8DF2A2F45785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AFF1D69-99E5-4C52-AC01-8DF2A2F45785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AFF1D69-99E5-4C52-AC01-8DF2A2F45785}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45DBBD2C-0A71-4EC1-9448-38DA2D78936C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45DBBD2C-0A71-4EC1-9448-38DA2D78936C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45DBBD2C-0A71-4EC1-9448-38DA2D78936C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45DBBD2C-0A71-4EC1-9448-38DA2D78936C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5634BDB6-D462-4423-8273-134C62767408} = {1431FCAB-B1E6-4946-9D62-6065EEC9857E}
 	EndGlobalSection
 EndGlobal
