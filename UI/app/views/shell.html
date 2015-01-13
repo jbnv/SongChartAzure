@@ -28,7 +28,7 @@
 
             <form class="navbar-form navbar-right" role="search" data-bind="submit:search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search" data-bind="value: searchTerm, valueUpdate: 'afterkeydown'">
                 </div>
             </form>
         </div>

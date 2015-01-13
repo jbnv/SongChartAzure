@@ -1,11 +1,22 @@
-﻿define(['plugins/router', 'durandal/app'], function (router, app) {
+﻿define(['plugins/router', 'durandal/app','knockout'], function (router, app,ko) {
+
+    var searchTerm = ko.observable();
+
     return {
         router: router,
-        search: function() {
-            //It's really easy to show a message box.
-            //You can add custom options too. Also, it returns a promise for the user's response.
-            app.showMessage('Search not yet implemented...');
-        },
+        search: function () {
+            term = ''+searchTerm();
+            console.log('searchTerm', term);
+            if (result = term.match(/^(\d\d\d\d)s$/)) {
+                router.navigate('#decade/'+result[1]);
+            }
+            if (result = term.match(/^(\d\d\d\d)$/)) {
+                router.navigate('#year/' + result[1]);
+            }
+            if (result = term.match(/^(\d\d\d\d)-(\d\d)$/)) {
+                router.navigate('#month/' + result[1] + '/' + result[2]);
+            }
+            app.showMessage('Search for "' + term + '" not yet implemented.');        },
         activate: function () {
             router.map([
                 { route: '', title:'Home Screen', moduleId: 'viewmodels/home', nav: true },
@@ -18,6 +29,7 @@
             ]).buildNavigationModel();
             
             return router.activate();
-        }
+        },
+        searchTerm: searchTerm
     };
 });
