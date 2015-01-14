@@ -117,7 +117,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SongChartsController.cs" />
     <Compile Include="Controllers\SongsController.cs" />
-    <Compile Include="Controllers\UpdateDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

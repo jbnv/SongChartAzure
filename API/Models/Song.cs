@@ -7,6 +7,7 @@ namespace API.Models
 {
     public class Song
     {
+        public long ChartRank { get; set; }
         public string Fullname { get; set; }
         public string Title { get; set; }
         public Artist Artist { get; set; }
@@ -27,6 +28,8 @@ namespace API.Models
         {
             Song o = new Song();
             int ordinal;
+
+            o.ChartRank = dr.GetInt64(dr.GetOrdinal("ChartRank"));
 
             o.Fullname = dr.GetString(dr.GetOrdinal("Fullname"));
 
@@ -63,9 +66,8 @@ namespace API.Models
             ordinal = dr.GetOrdinal("PeakRank");
             o.PeakRank = dr.IsDBNull(ordinal) ? 0 : dr.GetDecimal(ordinal);
 
-            //FIX! Invalid cast.
-            //FIX! ordinal = dr.GetOrdinal("Duration");
-            //FIX! o.Duration = dr.IsDBNull(ordinal) ? 0 : dr.GetDecimal(ordinal);
+            ordinal = dr.GetOrdinal("Duration");
+            o.Duration = dr.IsDBNull(ordinal) ? 0 : dr.GetInt32(ordinal);
 
             return o;
         }

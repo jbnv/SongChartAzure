@@ -44,6 +44,30 @@ namespace API
             );
 
             config.Routes.MapHttpRoute(
+                name: "ArtistSongChart",
+                routeTemplate: "songcharts/artist/{artist}",
+                defaults: new { controller = "SongCharts", action = "artist" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "TopByPeakSongChart",
+                routeTemplate: "songcharts/topByPeak",
+                defaults: new { controller = "SongCharts", action = "topByPeak" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "TopByDebutSongChart",
+                routeTemplate: "songcharts/topByDebut",
+                defaults: new { controller = "SongCharts", action = "topByDebut" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "TopByDurationSongChart",
+                routeTemplate: "songcharts/topByDuration",
+                defaults: new { controller = "SongCharts", action = "topByDuration" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "Home",
                 routeTemplate: "home",
                 defaults: new { controller = "Home" }
