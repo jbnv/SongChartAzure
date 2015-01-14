@@ -10,12 +10,12 @@ namespace API.Models
     public class Decade : Chart
     {
         public short Number { get; private set; }
-        public Dictionary<short, Year> Years { get; private set; }
+        public List<Year> Years { get; private set; }
 
         public Decade()
             : base()
         {
-            Years = new Dictionary<short, Year>();
+            Years = new List<Year>();
         }
 
         public Decade(short number)

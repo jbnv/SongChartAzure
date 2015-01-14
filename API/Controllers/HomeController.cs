@@ -96,7 +96,7 @@ namespace API.Controllers
                     {
                         year = new Year(yearNumber);
                     }
-                    decade.Years.Add(yearNumber, year);
+                    decade.Years.Add( year);
                 }
             }
 

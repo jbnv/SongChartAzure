@@ -12,10 +12,10 @@
         <tr>
             <td><a data-bind="attr: {href: $data.Route}, text: $data.Title"></a></td>
             <td data-bind="text: $data.SongCount"></td>
-            <td data-bind="foreachproperty: $data.Years">
+            <td data-bind="foreach: $data.Years">
                 <div class="col-xs-1">
-                    <a data-bind="attr: {href: $data.$value.Route}, text: $data.$value.Title"></a>
-                    <span data-bind="text: $data.$value.SongCount"></span>
+                    <a data-bind="attr: {href: $data.Route}, text: $data.Title"></a>
+                    <span data-bind="text: $data.SongCount"></span>
                 </div>
             </td>
         </tr>
