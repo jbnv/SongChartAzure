@@ -1,8 +1,7 @@
-define(['knockout', 'classes/DataTable', 'classes/ChartContext'], function (ko, DataTable, ChartContext) {
+define(['knockout', 'classes/common', 'classes/DataTable', 'classes/ChartContext'], function (ko, common,DataTable, ChartContext) {
 
     /* Properties */
 
-    var isLoading = ko.observable(false);
     var showIsDebut = ko.observable(false);
 
     var dt = new DataTable({
@@ -17,11 +16,10 @@ define(['knockout', 'classes/DataTable', 'classes/ChartContext'], function (ko, 
         'duration': "Duration (Months)",
         'k': "Coefficient Constant",
         'a': "Ascent Coefficient",
-        'b': "Descent Coefficient",
-        'timeToPeak': "Time to Peak"
+        'b': "Descent Coefficient"
     });
     dt.rowLimit(100);
-    dt.sortField('score');
+    dt.sortString('score');
     dt.sortIsAscending(false);
     dt.columns.debutDate.hidden(true);
 
@@ -30,10 +28,24 @@ define(['knockout', 'classes/DataTable', 'classes/ChartContext'], function (ko, 
         /* Methods */
 
     var activate = function (pContext) {
-        isLoading(true);
-        context.set(pContext);
-        //TODO Load data.
-        isLoading(false);
+        common.isLoading(true);
+        $.ajax({
+            url: common.serviceUrlBase + context.serviceRoute,
+            dataType: "json",
+            type: "GET",
+            //xhrFields: {
+            //    withCredentials: true
+            //},
+            success: function (pData, pStatus, pRequest) {
+                dt.data(pData)
+            },
+            error: function (pData, pStatus, pError) {
+                toastr.error("An error occurred while loading home page data.");
+            },
+            complete: function () {
+                common.isLoading(false);
+            }
+        });
         return 1;
     };
 
@@ -42,15 +54,13 @@ define(['knockout', 'classes/DataTable', 'classes/ChartContext'], function (ko, 
     return {
         activate: activate,
         // Properties
-        data: dt.displayedData,
+        data: dt.data, //TEMP dt.displayedData,
         columns: dt.columns,
         context: context,
         // Flags
-        isLoading: isLoading,
+        isLoading: common.isLoading,
         showIsDebut: showIsDebut,
         // Methods
-        showPrevious: function () { /* TODO route to #decade/(context-10) */ },
-        showNext: function () { /* TODO route to #decade/(context+10) */ },
         setSort: function (pSortString, pIsAscending) {
             return function () {
                 dt.sortField(pSortString);

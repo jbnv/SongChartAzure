@@ -81,35 +81,24 @@
                     </ul>
                 </div>
             </th>
-            <th data-bind="hidden: columns.timeToPeak.hidden">
-                <div class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">H</a>
-                    <ul class="dropdown-menu">
-                        <li><b>Time to Peak (H)</b></li>
-                        <li data-bind="click: setSort('timeToPeak',true)"><a href="#"><i class="fa fa-sort-numeric-asc"></i> Order Ascending</a></li>
-                        <li data-bind="click: setSort('timeToPeak',false)"><a href="#"><i class="fa fa-sort-numeric-desc"></i> Order Descending</a></li>
-                        <li data-bind="toggle: columns.timeToPeak.hidden"><a href="#"><i class="fa fa-remove"></i> Remove</a></li>
-                    </ul>
-                </div>
-            </th>
         </tr>
     </thead>
-    <tbody>
-        <tr data-bind="foreach: data">
-            <td data-bind="hidden: columns.rank.hidden"><span data-bind="text: rank"></span></td>
-            <td data-bind="hidden: columns.title.hidden"><a href="#song(song)"><span data-bind="text: title"></span></a></td>
-            <td data-bind="hidden: columns.artistName.hidden">
-                <!-- ko with: artist -->
-                <a href="#artist(artist)" data-bind="text: title"></a>
+    <tbody data-bind="foreach: data">
+        <tr>
+            <td data-bind="hidden: $root.columns.rank.hidden"><span data-bind="text: ChartRank"></span></td>
+            <td data-bind="hidden: $root.columns.title.hidden"><a href="#song(song)"><span data-bind="text: Title"></span></a></td>
+            <td data-bind="hidden: $root.columns.artistName.hidden">
+                <!-- ko with: Artist -->
+                <a href="#artist(artist)" data-bind="text: Title"></a>
                 <!--<i data-bind="hidden: song.artistObject.$resolved" class="fa fa-spinner fa-spin"></i>-->
                 <!-- /ko -->
             </td>
-            <td data-bind="hidden: columns.debutDate.hidden"><span data-bind="text: debutDate"></span></td>
-            <td data-bind="hidden: columns.score.hidden"><span data-bind="text: score"></span></td>
-            <td data-bind="hidden: columns.debutRank.hidden"><span data-bind="text: debutRank"></span></td>
-            <td data-bind="hidden: columns.peakRank.hidden"><span data-bind="text: peakRank"></span></td>
-            <td data-bind="hidden: columns.duration.hidden"><span data-bind="text: duration"></span></td>
-            <td data-bind="hidden: columns.timeToPeak.hidden"><span data-bind="text: timeToPeak"></span></td>
+            <td data-bind="hidden: $root.columns.debutDate.hidden"><!--<span data-bind="text: DebutDate"></span>--></td>
+            <td data-bind="hidden: $root.columns.score.hidden"><span data-bind="text: Score"></span></td>
+            <td data-bind="hidden: $root.columns.debutRank.hidden"><span data-bind="text: DebutRank"></span></td>
+            <td data-bind="hidden: $root.columns.peakRank.hidden"><span data-bind="text: PeakRank"></span></td>
+            <td data-bind="hidden: $root.columns.duration.hidden"><span data-bind="text: Duration"></span></td>
         </tr>
     </tbody>
 </table>
+

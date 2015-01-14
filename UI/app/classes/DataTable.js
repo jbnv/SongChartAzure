@@ -23,19 +23,18 @@
 
         // For now, only single-field sorting is supported.
         function sortFn() {
-            //fieldSlug = $this.sortString();
-            //if ($this.sortIsAscending()) {
-            //    return function(l,r) { return l[fieldSlug] > r[fieldSlug] ? 1 : -1 };
-            //} else {
-            //    return function(l,r) { return l[fieldSlug] > r[fieldSlug] ? -1 : 1 };
-            //}
+            fieldSlug = $this.sortString();
+            if ($this.sortIsAscending()) {
+                return function(l,r) { return l[fieldSlug] > r[fieldSlug] ? 1 : -1 };
+            } else {
+                return function(l,r) { return l[fieldSlug] > r[fieldSlug] ? -1 : 1 };
+            }
         }
 
         this.displayedData = ko.computed(function () {
-            //var d = $this.data.sort(sortFn());
-            //if ($this.rowLimit()) { d = d.splice(0, $this.rowLimit()); }
-            //return d;
-            return null;
+            var d = $this.data.sort(sortFn());
+            if ($this.rowLimit()) { d = d.splice(0, $this.rowLimit()); }
+            return d;
         });
             
 
