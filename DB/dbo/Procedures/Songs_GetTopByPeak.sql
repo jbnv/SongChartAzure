@@ -1,5 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[Songs_GetDecade]
-	@decade SMALLINT
+﻿CREATE PROCEDURE [dbo].[Songs_GetTopByPeak]
 AS
 SELECT		[Id],
 			s.[Fullname],
@@ -14,11 +13,11 @@ SELECT		[Id],
 			[RanksString],
 			[Tags],
 			[Score],
-			ROW_NUMBER() OVER(ORDER BY [Score] DESC) AS [ChartRank],
+			ROW_NUMBER() OVER(ORDER BY [PeakRank] ASC, [Score] DESC) AS [ChartRank],
 			[DebutRank],
 			[PeakRank],
 			[Duration]
 FROM		[dbo].[Songs_Detailed] s
 INNER JOIN [DecadeFullnames] dfn ON [DebutDateFullname] = dfn.[Fullname]
-WHERE dfn.DecadeNumber = @decade
-ORDER BY [Score] DESC
+WHERE [PeakRank] < 1.5
+ORDER BY [PeakRank] ASC, [Score] DESC

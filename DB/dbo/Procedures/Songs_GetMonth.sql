@@ -3,6 +3,7 @@ AS
 SELECT		[Id],
 			s.[Fullname],
 			mcr.[Rank],
+			ROW_NUMBER() OVER(ORDER BY mcr.[Rank] DESC) AS [ChartRank],
 			[Title],
 			[ArtistId],
 			[ArtistFullname],
@@ -20,3 +21,4 @@ SELECT		[Id],
 FROM		[dbo].[Songs_Detailed] s
 INNER JOIN [MonthChartRanks] mcr ON mcr.[SongId] = s.[Id]
 WHERE mcr.[Year] = @year AND mcr.[MonthOrdinal] = @month
+ORDER BY mcr.[Rank] DESC

@@ -3,6 +3,6 @@ RETURNS DECIMAL(3,2)
 AS
 BEGIN
 	DECLARE @score DECIMAL(3,2)
-	SET @score = CASE WHEN LOG(@rank) > 3 THEN 0 ELSE 3-LOG(@rank) END
+	SET @score = CASE WHEN @rank < 1 THEN 0 WHEN LOG(@rank) > 3 THEN 0 ELSE 3-LOG(@rank) END
 	RETURN @score
 END

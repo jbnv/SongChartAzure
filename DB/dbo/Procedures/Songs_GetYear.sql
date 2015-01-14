@@ -14,6 +14,7 @@ SELECT		[Id],
 			[RanksString],
 			[Tags],
 			[Score],
+			ROW_NUMBER() OVER(ORDER BY [Score] DESC) AS [ChartRank],
 			[DebutRank],
 			[PeakRank],
 			[Duration]
@@ -27,3 +28,4 @@ INNER JOIN (
 	FROM [Months]
 	WHERE [Year] = @year
 ) fltr ON [DebutDateFullname] = fltr.[Fullname]
+ORDER BY [Score] DESC

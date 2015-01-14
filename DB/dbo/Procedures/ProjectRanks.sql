@@ -12,5 +12,5 @@ AS
 	OUTER APPLY (SELECT [Rank] FROM [dbo].[SongRanks] WHERE [SongId]=a.[SongId] AND [WeekId]=a.[FinalWeekId]-1) r1
 	OUTER APPLY (SELECT [Rank] FROM [dbo].[SongRanks] WHERE [SongId]=a.[SongId] AND [WeekId]=a.[FinalWeekId]-2) r2
 	CROSS JOIN Numbers
-	WHERE N < LOG(25/r0.[Rank]) / LOG(r0.[Rank]/r1.[Rank])
+	WHERE N > 0 AND N < LOG(25/r0.[Rank]) / LOG(r0.[Rank]/r1.[Rank])
 RETURN 0;

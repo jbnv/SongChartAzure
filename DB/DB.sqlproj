@@ -113,6 +113,10 @@
     <Build Include="dbo\Tables\SongFlags.sql" />
     <Build Include="dbo\Procedures\SongTitleWords_Update.sql" />
     <Build Include="dbo\Views\SongTitleWords_Counts.sql" />
+    <Build Include="dbo\Procedures\Songs_GetArtist.sql" />
+    <Build Include="dbo\Procedures\Songs_GetTopByPeak.sql" />
+    <Build Include="dbo\Procedures\Songs_GetTopByDebut.sql" />
+    <Build Include="dbo\Procedures\Songs_GetTopByDuration.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />
