@@ -1,8 +1,11 @@
 ﻿<h1 style="text-align: center">
-    <a class="btn btn-default" data-bind="attr: { href: context.previousRoute }"><i class="fa fa-chevron-left"></i></a>
-    <span data-bind="text: context.title"></span>
-    <a class="btn btn-default" data-bind="attr: { href: context.nextRoute}"><i class="fa fa-chevron-right"></i></a>
+    <a class="btn btn-default" data-bind="visible: previousRoute, attr: { href: previousRoute }"><i class="fa fa-chevron-left"></i></a>
+    <span data-bind="text: title"></span>
+    <a class="btn btn-default" data-bind="visible: nextRoute, attr: { href: nextRoute}"><i class="fa fa-chevron-right"></i></a>
 </h1>
+
+<!--ko compose: {model: router.activeItem, afterCompose: router.afterCompose} -->
+<!--/ko-->
 
 <table class="table table-condensed table-hover" data-bind="visible: data().length > 0">
     <thead>
@@ -87,7 +90,7 @@
         <tr>
             <td data-bind="hidden: $root.columns.rank.hidden"><span data-bind="text: ChartRank"></span></td>
             <td data-bind="hidden: $root.columns.title.hidden"><a href="#song(song)"><span data-bind="text: Title"></span></a></td>
-            <td data-bind="hidden: $root.columns.artistName.hidden">
+            <td data-bind="hidden: $root.columns.artist.hidden">
                 <!-- ko with: Artist -->
                 <a href="#artist(artist)" data-bind="text: Title"></a>
                 <!--<i data-bind="hidden: song.artistObject.$resolved" class="fa fa-spinner fa-spin"></i>-->

@@ -1,36 +1,119 @@
-define(['knockout', 'classes/common', 'classes/DataTable', 'classes/ChartContext'], function (ko, common,DataTable, ChartContext) {
+define(['plugins/router', 'knockout', 'classes/common', 'classes/DataTable'], function (router,ko, common, DataTable) {
 
     /* Properties */
-
-    var showIsDebut = ko.observable(false);
 
     var dt = new DataTable({
         'rank': 'Rank',
         'title': 'Title',
         'artist': "Artist",
-        'score': 'Score',
-        'isDebut': '', // no title
-        'debutDate': "Debut Date",
+        'score': 'Score', // for month, projected rank
+        'debutDate': "Debut Date", // for month, icon if debut
         'debutRank': "Debut Rank",
         'peakRank': "Peak Rank",
-        'duration': "Duration (Months)",
-        'k': "Coefficient Constant",
-        'a': "Ascent Coefficient",
-        'b': "Descent Coefficient"
+        'duration': "Duration (Months)"
+        //DEP 'k': "Coefficient Constant",
+        //DEP 'a': "Ascent Coefficient",
+        //DEP 'b': "Descent Coefficient"
     });
     dt.rowLimit(100);
     dt.sortString('score');
     dt.sortIsAscending(false);
     dt.columns.debutDate.hidden(true);
 
-    var context = new ChartContext();
+    /* Context */
+
+    var title = ko.observable(); // usually a computed function of value
+    var previousRoute = ko.observable(); // usually a computed function of value
+    var nextRoute = ko.observable();  // usually a computed function of value
+    var top = ko.observable(100);
 
         /* Methods */
 
     var activate = function (pContext) {
+        changeContext();
+        loadData();
+        return 1;
+    };
+
+    function changeContext() {
         common.isLoading(true);
+
+        route = router.activeInstruction().config.route;
+        parameters = router.activeInstruction().params; // array
+
+        // Page observable defaults
+        previousRoute(null); 
+        nextRoute(null);
+        //TODO showIsDebut(false); (this should actually be done as a column definition)
+
+        if (!route) {
+            // This should never happen.
+
+        } else if (route == "topByPeak") {
+            title('Top Songs by Peak Position');
+
+        } else if (route == "topByDebut") {
+            title('Top Songs by Debut Position');
+
+        } else if (route == "topByDuration") {
+            title('Top Songs by Longevity');
+
+        } else if (route == "artist/:artist") {
+            pArtistSlug = parameters[0];
+            title('TODO Artist Name');
+
+        } else if (route == "decade/:decade") {
+            pDecade = parseInt(parameters[0]);
+            title('' + pDecade + 's');
+            previousRoute('#decade/'+(pDecade-10));
+            nextRoute('#decade/'+(pDecade+10));
+            //    $scope.columns.show('rank');
+            //    $scope.columns.hide('debutDate');
+            //    $scope.columns.hide('projectedRank');
+            //    $scope.columns.show('score');
+            //    $scope.dataParameters = {
+
+        } else if (route == "year/:year") {
+            pYear = parseInt(parameters[0]);
+            title('' + pYear);
+            previousRoute('#year/'+(pYear-1));
+            nextRoute('#year/'+(pYear+1));
+            //        $scope.columns.hide('projectedRank');
+            //        $scope.columns.show('score');
+            //        $scope.dataParameters.sortField = '-score';
+            //        $scope.dataParameters.transformFn = function (songDataArray) {
+            //    pDecade = pYear - pYear % 10;
+            //    $scope.filter = {
+            //        decade: pDecade, year: pYear, month: pMonth
+            //    };
+
+        } else if (route == "month/:year/:month") {
+            pYear = parseInt(parameters[0]);
+            pMonth =parseInt( parameters[1]);
+            monthName = Months[pMonth-1];
+            title(monthName+' ' + pYear);
+            if (pMonth == 1) {
+                previousRoute('#month/'+(pYear-1)+'/12');
+            } else {
+                previousRoute('#month/'+(pYear)+'/'+(pMonth-1));
+            }
+            if (pMonth == 1) {
+                nextRoute('#month/'+(pYear+1)+'/1');
+            } else {
+                nextRoute('#month/'+(pYear)+'/'+(pMonth+1));
+            }
+
+        } else {
+            //    console.log('Clearing display array.');
+            //    $scope.displayArray = [];
+            title('(Invalid or null filter)');
+        }
+    }
+
+    function loadData() {
+
         $.ajax({
-            url: common.serviceUrlBase + context.serviceRoute,
+            url: common.serviceUrlBase + "songcharts/" + router.activeInstruction().fragment,
             dataType: "json",
             type: "GET",
             //xhrFields: {
@@ -46,8 +129,7 @@ define(['knockout', 'classes/common', 'classes/DataTable', 'classes/ChartContext
                 common.isLoading(false);
             }
         });
-        return 1;
-    };
+    }
 
     /* Viewmodel Object */
 
@@ -56,10 +138,11 @@ define(['knockout', 'classes/common', 'classes/DataTable', 'classes/ChartContext
         // Properties
         data: dt.data, //TEMP dt.displayedData,
         columns: dt.columns,
-        context: context,
+        title: title,
+        previousRoute: previousRoute,
+        nextRoute: nextRoute,
         // Flags
         isLoading: common.isLoading,
-        showIsDebut: showIsDebut,
         // Methods
         setSort: function (pSortString, pIsAscending) {
             return function () {
