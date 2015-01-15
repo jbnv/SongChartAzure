@@ -76,7 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\classes\Chart.js" />
-    <Content Include="app\classes\ChartContext.js" />
     <Content Include="app\classes\Decade.js" />
     <Content Include="app\classes\Months.js" />
     <Content Include="app\viewmodels\song.js" />

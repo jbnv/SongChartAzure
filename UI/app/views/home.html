@@ -1,23 +1,18 @@
 ﻿<h2>Decades/Years</h2>
 
 <table class="table table-condensed table-hover">
-    <thead>
-        <tr>
-            <th>Decade</th>
-            <th>Count</th>
-            <th>Years</th>
-        </tr>
-    </thead>
     <tbody data-bind="foreach: decades">
         <tr>
-            <td><a data-bind="attr: {href: $data.Route}, text: $data.Title"></a></td>
-            <td data-bind="text: $data.SongCount"></td>
-            <td data-bind="foreach: $data.Years">
-                <div class="col-xs-1">
-                    <a data-bind="attr: {href: $data.Route}, text: $data.Title"></a>
-                    <span data-bind="text: $data.SongCount"></span>
-                </div>
+            <td class="col-xs-1">
+                <strong><a data-bind="attr: {href: $data.Route}, text: $data.Title"></a></strong>
+                <span class="label label-default" data-bind="text: $data.SongCount"></span>
             </td>
+            <!-- ko foreach: $data.Years -->
+            <td class="col-xs-1">
+                <a data-bind="attr: {href: $data.Route}, text: $data.Title"></a>
+                <span class="label label-default" data-bind="text: $data.SongCount"></span>
+            </td>
+            <!-- /ko -->
         </tr>
     </tbody>
 </table>
