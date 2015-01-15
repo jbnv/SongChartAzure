@@ -61,7 +61,7 @@ namespace API.Controllers
 
         [HttpGet]
         [ActionName("topByPeak")]
-        public List<Song> GetTopSongsByPeakChart([FromUri] int artistId)
+        public List<Song> GetTopSongsByPeakChart()
         {
             GetAction<Song> getAction = new GetAction<Song>();
             getAction.ProcedureName = "dbo.Songs_GetTopByPeak";
@@ -71,7 +71,7 @@ namespace API.Controllers
 
         [HttpGet]
         [ActionName("topByDebut")]
-        public List<Song> GetTopSongsByDebutChart([FromUri] int artistId)
+        public List<Song> GetTopSongsByDebutChart()
         {
             GetAction<Song> getAction = new GetAction<Song>();
             getAction.ProcedureName = "dbo.Songs_GetTopByDebut";
@@ -81,7 +81,7 @@ namespace API.Controllers
 
         [HttpGet]
         [ActionName("topByDuration")]
-        public List<Song> GetTopSongsByDurationChart([FromUri] int artistId)
+        public List<Song> GetTopSongsByDurationChart()
         {
             GetAction<Song> getAction = new GetAction<Song>();
             getAction.ProcedureName = "dbo.Songs_GetTopByDuration";
