@@ -1,22 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[Songs_GetOne]
 	@id INT
 AS
-SELECT		[Id],
-			[Fullname],
-			[Title],
-			[ArtistId],
-			[ArtistFullname],
-			[ArtistTitle],
-			[GenreId],
-			[GenreFullname],
-			[GenreTitle],
-			[DebutDateFullname],
-			[RanksString],
-			[Tags],
-			[Score],
-			[DebutRank],
-			[PeakRank],
-			[Duration]
-FROM		[dbo].[Songs_Detailed]
+SELECT		s.*
+FROM		[dbo].[Songs_Detailed] s
 WHERE		[Id] = @id
 RETURN 0

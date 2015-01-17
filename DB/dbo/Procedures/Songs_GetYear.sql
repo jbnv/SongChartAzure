@@ -1,23 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[Songs_GetYear]
 	@year SMALLINT
 AS
-SELECT		[Id],
-			s.[Fullname],
-			[Title],
-			[ArtistId],
-			[ArtistFullname],
-			[ArtistTitle],
-			[GenreId],
-			[GenreFullname],
-			[GenreTitle],
-			[DebutDateFullname],
-			[RanksString],
-			[Tags],
-			[Score],
-			ROW_NUMBER() OVER(ORDER BY [Score] DESC) AS [ChartRank],
-			[DebutRank],
-			[PeakRank],
-			[Duration]
+SELECT		s.*,
+			ROW_NUMBER() OVER(ORDER BY [Score] DESC) AS [ChartRank]
 FROM		[dbo].[Songs_Detailed] s
 INNER JOIN (
 	SELECT 'calendar:'+[Slug] AS [Fullname]

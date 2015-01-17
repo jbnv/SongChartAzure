@@ -117,6 +117,7 @@
     <Build Include="dbo\Procedures\Songs_GetTopByPeak.sql" />
     <Build Include="dbo\Procedures\Songs_GetTopByDebut.sql" />
     <Build Include="dbo\Procedures\Songs_GetTopByDuration.sql" />
+    <Build Include="dbo\Tables\SongArtists.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />

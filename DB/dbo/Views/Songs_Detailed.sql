@@ -5,9 +5,13 @@ SELECT		s.[Id],
 			s.[Title],
 			LEN(s.[Title]) AS [Title_CharacterCount],
 			LEN(s.[Title])-LEN(REPLACE(s.[Title],' ','')) AS [Title_WordCount],
-			s.[ArtistID],
-			a.[Fullname] AS [ArtistFullname],
-			a.[Title] AS [ArtistTitle],
+			(
+				SELECT [Id],[Fullname],[Title],[RoleSlug]
+				FROM [Artists] a
+				INNER JOIN [SongArtists] sa ON a.[ID] = sa.[ArtistId] 
+				WHERE sa.[SongId] = s.[Id]
+				FOR XML RAW
+			) AS [ArtistsXML],
 			s.[GenreID],
 			g.[Fullname] AS [GenreFullname],
 			g.[Title] AS [GenreTitle],
@@ -19,7 +23,6 @@ SELECT		s.[Id],
 			sAgg.[PeakRank],
 			sAgg.[Duration]
 FROM		[Songs] s
-LEFT OUTER JOIN	[Artists] a ON a.[Id] = s.[ArtistId]
 LEFT OUTER JOIN [Genres] g ON g.[Id] = s.[GenreID]
 LEFT OUTER JOIN (
 	SELECT [SongID],[Rank] FROM [SongRanks] WHERE [WeekOrdinal] = 0
