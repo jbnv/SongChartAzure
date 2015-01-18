@@ -22,26 +22,32 @@
 
 <h2>Top Artists</h2>
 
-<p data-bind="foreach: artists">
-    <a data-bind="text: Title, attr: { href: '#artist/'+Id }"></a>
-    <span class="label label-default" data-bind="text: SongCount"></span>
-    <span class="label label-default" data-bind="text: Score"></span>
-</p>
+<div class="container-fluid" data-bind="foreach: artists">
+    <div class="col-xs-3">
+        <a data-bind="text: Title, attr: { href: '#artist/'+Id }"></a>
+        <span class="label label-default" data-bind="text: SongCount"></span>
+        <span class="label label-default" data-bind="text: Math.floor(Score)"></span>
+    </div>
+</div>
 
 <h2>Top Genres</h2>
 
-<p data-bind="foreach: genres">
-    <a data-bind="text: Title, attr: { href: '#genre/'+Id }"></a>
-    <span class="label label-default" data-bind="text: SongCount"></span>
-    <span class="label label-default" data-bind="text: Score"></span>
-</p>
+<div class="container-fluid" data-bind="foreach: genres">
+    <div class="col-xs-2">
+        <a data-bind="text: Title, attr: { href: '#genre/'+Id }"></a>
+        <span class="label label-default" data-bind="text: SongCount"></span>
+        <span class="label label-default" data-bind="text: Math.floor(Score)"></span>
+    </div>
+</div>
 
 <h2>Most Common Words</h2>
 
-<p data-bind="foreach: commonWords">
-    <span data-bind="text: Word"></span>
-    <span class="label label-default" data-bind="text: SongCount"></span>
-</p>
+<div class="container-fluid" data-bind="foreach: commonWords">
+    <div class="col-xs-1">
+        <span data-bind="text: Word"></span>
+        <span class="label label-default" data-bind="text: SongCount"></span>
+    </div>
+</div>
 
 <h2>Unique Words</h2>
 
