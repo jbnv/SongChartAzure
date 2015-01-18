@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace API.Models
 {
-    public class Song
+    public class Song : Chartable
     {
         public class SongArtist
         {
@@ -15,12 +15,8 @@ namespace API.Models
             public string RoleSlug { get; set; }
         }
 
-        public long ChartRank { get; set; }
-        public string Fullname { get; set; }
-        public string Title { get; set; }
         public List<SongArtist> Artists { get; set; }
         public Genre Genre { get; set; }
-        public Decimal Score { get; set; }
         public Decimal DebutRank { get; set; }
         public Decimal PeakRank { get; set; }
         public Decimal Duration { get; set; }
@@ -37,6 +33,8 @@ namespace API.Models
         {
             Song o = new Song();
             int ordinal;
+
+            o.Id = dr.GetInt32(dr.GetOrdinal("Id"));
 
             try
             {

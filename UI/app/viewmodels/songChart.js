@@ -1,4 +1,4 @@
-define(['plugins/router', 'knockout', 'classes/common', 'classes/DataTable'], function (router,ko, common, DataTable) {
+define(['plugins/router', 'knockout', 'classes/common', 'classes/DataTable', 'classes/Months'], function (router, ko, common, DataTable, Months) {
 
     /* Properties */
 
@@ -18,7 +18,6 @@ define(['plugins/router', 'knockout', 'classes/common', 'classes/DataTable'], fu
     dt.rowLimit(100);
     dt.sortString('score');
     dt.sortIsAscending(false);
-    dt.columns.debutDate.hidden(true);
 
     /* Context */
 
@@ -67,25 +66,12 @@ define(['plugins/router', 'knockout', 'classes/common', 'classes/DataTable'], fu
             title('' + pDecade + 's');
             previousRoute('#decade/'+(pDecade-10));
             nextRoute('#decade/'+(pDecade+10));
-            //    $scope.columns.show('rank');
-            //    $scope.columns.hide('debutDate');
-            //    $scope.columns.hide('projectedRank');
-            //    $scope.columns.show('score');
-            //    $scope.dataParameters = {
 
         } else if (route == "year/:year") {
             pYear = parseInt(parameters[0]);
             title('' + pYear);
             previousRoute('#year/'+(pYear-1));
             nextRoute('#year/'+(pYear+1));
-            //        $scope.columns.hide('projectedRank');
-            //        $scope.columns.show('score');
-            //        $scope.dataParameters.sortField = '-score';
-            //        $scope.dataParameters.transformFn = function (songDataArray) {
-            //    pDecade = pYear - pYear % 10;
-            //    $scope.filter = {
-            //        decade: pDecade, year: pYear, month: pMonth
-            //    };
 
         } else if (route == "month/:year/:month") {
             pYear = parseInt(parameters[0]);
@@ -97,7 +83,7 @@ define(['plugins/router', 'knockout', 'classes/common', 'classes/DataTable'], fu
             } else {
                 previousRoute('#month/'+(pYear)+'/'+(pMonth-1));
             }
-            if (pMonth == 1) {
+            if (pMonth == 12) {
                 nextRoute('#month/'+(pYear+1)+'/1');
             } else {
                 nextRoute('#month/'+(pYear)+'/'+(pMonth+1));

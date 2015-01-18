@@ -20,11 +20,12 @@ namespace API.Models
             // Debut (month charts only)
             if (s == "debut")
             {
-                this.Add("debut", "true");
+                this.Add("debut", true);
+                this.Add("hash", null); // field must be returned 
                 return;
             }
 
-            this.Add("debut", "false");
+            this.Add("debut", false);
 
             // Decade 
             expression = new Regex(@"^(calendar:)?(?<decade>\d\d\d\d)s$");
@@ -64,6 +65,8 @@ namespace API.Models
                 this.Add("hash", String.Format("month/{0}/{1}" , year, month));
                 return;
             }
+
+            this.Add("hash", null); // field must be returned 
         }
     }
 

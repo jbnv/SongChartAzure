@@ -40,7 +40,7 @@
                     </ul>
                 </div>
             </th>
-            <th data-bind="hidden: columns.debutDate.hidden">Date</th>
+            <th data-bind="hidden: columns.debutDate.hidden">Debut</th>
             <th data-bind="hidden: columns.score.hidden">
                 <div class="dropdown">
                     <a href="#" data-toggle="dropdown" class="dropdown-toggle">Score</a>
@@ -89,14 +89,22 @@
     <tbody data-bind="foreach: data">
         <tr>
             <td data-bind="hidden: $root.columns.rank.hidden"><span data-bind="text: ChartRank"></span></td>
-            <td data-bind="hidden: $root.columns.title.hidden"><a href="#song(song)"><span data-bind="text: Title"></span></a></td>
+            <td data-bind="hidden: $root.columns.title.hidden"><a data-bind="text: Title, attr: { href: '#song/'+Id }"></a></td>
             <td data-bind="hidden: $root.columns.artist.hidden">
+                <!-- ko foreach: Artists -->
                 <!-- ko with: Artist -->
-                <a href="#artist(artist)" data-bind="text: Title"></a>
-                <!--<i data-bind="hidden: song.artistObject.$resolved" class="fa fa-spinner fa-spin"></i>-->
+                <a data-bind="if: $parent.RoleSlug == 'primary' || $parent.RoleSlug == 'co', attr: { href: '#artist/'+Id }">
+                    <span data-bind="text: Title"></span>
+                </a>
+                <!-- /ko -->
                 <!-- /ko -->
             </td>
-            <td data-bind="hidden: $root.columns.debutDate.hidden"><!--<span data-bind="text: DebutDate"></span>--></td>
+            <td data-bind="hidden: $root.columns.debutDate.hidden">
+                <!-- ko with: DebutDate -->
+                <span data-bind="if: debut"><i class="fa fa-star"></i></span>
+                <a data-bind="if: slug && !debut, attr: { href: '#'+hash }"><span data-bind="text: slug"></span></a>
+                <!-- /ko -->
+            </td>
             <td data-bind="hidden: $root.columns.score.hidden"><span data-bind="text: Score"></span></td>
             <td data-bind="hidden: $root.columns.debutRank.hidden"><span data-bind="text: DebutRank"></span></td>
             <td data-bind="hidden: $root.columns.peakRank.hidden"><span data-bind="text: PeakRank"></span></td>
