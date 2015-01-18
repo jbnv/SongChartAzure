@@ -18,11 +18,33 @@
 </table>
 
 
-<!--<h2>Months TODO</h2>
+<!--<h2>Months TODO</h2>-->
 
-<h2>Top Artists TODO</h2>
+<h2>Top Artists</h2>
 
-<h2>Etc.</h2>
+<p data-bind="foreach: artists">
+    <a data-bind="text: Title, attr: { href: '#artist/'+Id }"></a>
+    <span class="label label-default" data-bind="text: SongCount"></span>
+    <span class="label label-default" data-bind="text: Score"></span>
+</p>
 
-<p>Possibly other top lists. Wordcloud.</p>-->
+<h2>Top Genres</h2>
 
+<p data-bind="foreach: genres">
+    <a data-bind="text: Title, attr: { href: '#genre/'+Id }"></a>
+    <span class="label label-default" data-bind="text: SongCount"></span>
+    <span class="label label-default" data-bind="text: Score"></span>
+</p>
+
+<h2>Most Common Words</h2>
+
+<p data-bind="foreach: commonWords">
+    <span data-bind="text: Word"></span>
+    <span class="label label-default" data-bind="text: SongCount"></span>
+</p>
+
+<h2>Unique Words</h2>
+
+<p data-bind="foreach: uniqueWords">
+    <span data-bind="text: $data"></span>
+</p>

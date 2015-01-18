@@ -3,10 +3,11 @@ AS
 	TRUNCATE TABLE [SongTitleWords];
 
 	INSERT INTO [dbo].[SongTitleWords] ([SongId],[Word])
-	SELECT [Id],words.Item
+	SELECT DISTINCT [Id],LOWER(words.Item)
 	FROM [Songs]
 	--TODO Massage title. Map related words together.
-	--TODO BUG! Losing first letter.
-	CROSS APPLY [dbo].[Split]([Title],' ') words
+	CROSS APPLY (SELECT REPLACE(REPLACE(REPLACE([Title],' ','_'),'(',''),')','') AS [TitleM]) massage
+	CROSS APPLY [dbo].[Split]([TitleM],'_') words
+	ORDER BY [Id]
 
 RETURN 0
