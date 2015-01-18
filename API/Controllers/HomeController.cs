@@ -14,19 +14,24 @@ namespace API.Controllers
 
     public class HomePageData
     {
-        public List<Decade> Decades;
-        public Dictionary<short, Year> Years;
+        public List<Decade> Decades { get; private set; }
+        public Dictionary<short, Year> Years { get; private set; }
         // Separate lists of numbers to facilitate iteration.
         public List<short> DecadeNumbers;
         public List<short> YearNumbers;
 
-        public List<Artist> Artists;
-        public List<Word> Words;
+        public List<Artist> Artists { get; private set; }
+        public List<Genre> Genres { get; private set; }
+        public List<Word> Words { get; private set; }
 
         public HomePageData()
         {
             this.Decades = new List<Decade>();
             this.Years = new Dictionary<short, Year>();
+
+            this.Artists = new List<Artist>();
+            this.Genres = new List<Genre>();
+            this.Words = new List<Word>();
         }
     }
 
@@ -38,72 +43,105 @@ namespace API.Controllers
         {
             HomePageData data = new HomePageData();
 
-            SqlConnection conn = SongChartsDatabase.Connection();
             SqlCommand command;
             SqlDataReader reader;
 
             // Get the data.
 
-            conn.Open();
+            using (SqlConnection conn = SongChartsDatabase.Connection()) {
 
-            command = new SqlCommand("SELECT [DecadeNumber],[SongCount] FROM [dbo].[DecadeSummaries] ORDER BY [DecadeNumber]", conn);
-            command.CommandType = CommandType.Text;
-            command.CommandTimeout = 200;
+                conn.Open();
 
-            reader  = command.ExecuteReader();
-            while (reader.Read())
-            {
-                Decade decade = new Decade();
-                decade.GetSummaryData(reader);
-                data.Decades.Add(decade);
-            }
-            reader.Close();
+                command = new SqlCommand("SELECT [DecadeNumber],[SongCount] FROM [dbo].[DecadeSummaries] ORDER BY [DecadeNumber]", conn);
+                command.CommandType = CommandType.Text;
+                command.CommandTimeout = 200;
 
-            command = new SqlCommand("SELECT [YearNumber],[SongCount] FROM [dbo].[YearSummaries] ORDER BY [YearNumber]", conn);
-            command.CommandType = CommandType.Text;
-            command.CommandTimeout = 200;
-
-            reader  = command.ExecuteReader();
-            while (reader.Read())
-            {
-                Year year = new Year();
-                year.GetSummaryData(reader);
-                data.Years.Add(year.Number, year);
-            }
-            reader.Close();
-
-            //TODO Get month data.
-
-            conn.Close();
-
-            // Massage data and form output object.
-
-            //TEMP? data.DecadeNumbers = data.Decades.Keys.ToList();
-            //TEMP? data.YearNumbers = data.Years.Keys.ToList();
-
-            // Put the year data into the respective decade objects.
-            foreach (Decade decade in data.Decades)
-            {
-                short decadeNumber = decade.Number;
-                // decade.Years == {}
-                short[] yearOrdinals = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-                foreach (short y in yearOrdinals)
+                reader  = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    short yearNumber = (short)(decadeNumber + y);
-                    Year year;
-                    if (data.Years.ContainsKey(yearNumber))
-                    {
-                        year = data.Years[yearNumber];
-                    }
-                    else
-                    {
-                        year = new Year(yearNumber);
-                    }
-                    decade.Years.Add( year);
+                    Decade decade = new Decade();
+                    decade.GetSummaryData(reader);
+                    data.Decades.Add(decade);
                 }
-            }
+                reader.Close();
+
+                command = new SqlCommand("SELECT [YearNumber],[SongCount] FROM [dbo].[YearSummaries] ORDER BY [YearNumber]", conn);
+                command.CommandType = CommandType.Text;
+                command.CommandTimeout = 200;
+
+                reader  = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Year year = new Year();
+                    year.GetSummaryData(reader);
+                    data.Years.Add(year.Number, year);
+                }
+                reader.Close();
+
+                //TODO Get month data.
+
+                Get_Artists(conn, data);
+
+                conn.Close();
+
+                // Massage data and form output object.
+
+                //TEMP? data.DecadeNumbers = data.Decades.Keys.ToList();
+                //TEMP? data.YearNumbers = data.Years.Keys.ToList();
+
+                // Put the year data into the respective decade objects.
+                foreach (Decade decade in data.Decades)
+                {
+                    short decadeNumber = decade.Number;
+                    // decade.Years == {}
+                    short[] yearOrdinals = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+                    foreach (short y in yearOrdinals)
+                    {
+                        short yearNumber = (short)(decadeNumber + y);
+                        Year year;
+                        if (data.Years.ContainsKey(yearNumber))
+                        {
+                            year = data.Years[yearNumber];
+                        }
+                        else
+                        {
+                            year = new Year(yearNumber);
+                        }
+                        decade.Years.Add( year);
+                    }
+                }
+
+                // Get artist summary.
+
+
+
+            } // using
+
+            // All done.
 
             return data;
         }
+
+        private void Get_Artists(SqlConnection connection, HomePageData data)
+        {
+            string sql = "SELECT TOP 40 [Id],[Title],[SongCount],[Score] FROM [Artists] ORDER BY [Score] DESC";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.CommandType = CommandType.Text;
+            command.CommandTimeout = 200;
+
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                Artist a = new Artist();
+                a.Id = reader.GetInt32(0);
+                a.Title = reader.GetString(1);
+                a.SongCount = reader.GetInt16(2);
+                a.Score = reader.GetDecimal(3);
+                data.Artists.Add(a);
+            }
+            reader.Close();
+        }
+
     }
 }
