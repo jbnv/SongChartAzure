@@ -5,7 +5,7 @@ using System.Web;
 
 namespace API.Models
 {
-    public class Genre : Chartable
+    public class Word : Chartable
     {
     }
 }

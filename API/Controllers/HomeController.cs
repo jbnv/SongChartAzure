@@ -20,6 +20,9 @@ namespace API.Controllers
         public List<short> DecadeNumbers;
         public List<short> YearNumbers;
 
+        public List<Artist> Artists;
+        public List<Word> Words;
+
         public HomePageData()
         {
             this.Decades = new List<Decade>();

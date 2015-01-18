@@ -7,6 +7,25 @@ using System.Web;
 
 namespace API.Tools
 {
+    public class ActionParameter : IDataParameter
+    {
+        public string ParameterName { get; set; }
+        public object Value { get; set; }
+
+        // The following aren't yet used but must be implemented per the IDataParameter interface.
+        public DbType DbType { get; set; }
+        public ParameterDirection Direction { get; set; }
+        public bool IsNullable { get { return true; } }
+        public string SourceColumn { get; set; }
+        public DataRowVersion SourceVersion { get; set; }
+
+        public ActionParameter(string name, object value)
+        {
+            this.ParameterName = name;
+            this.Value = value;
+        }
+    }
+
     public class GetAction<T>
     {
         public Func<IDataRecord, T> IDataRecordFunc { get; set; }
@@ -19,9 +38,16 @@ namespace API.Tools
             _parameters = new List<SqlParameter>();
         }
 
-        public void AddParameter(SqlParameter parameter)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <remarks>Provide a generic contract for the parameter, but handle specifically.</remarks>
+        public void AddParameter(IDataParameter parameter)
         {
-            _parameters.Add(parameter);
+
+            SqlParameter actualParameter = new SqlParameter(parameter.ParameterName, parameter.Value);
+            _parameters.Add(actualParameter);
         }
 
         public  List<T> Execute() {
