@@ -1,6 +1,6 @@
 ﻿CREATE VIEW [RankConflicts]
 AS
-SELECT c.[Year],c.[MonthOrdinal],c.[WeekOrdinal],s.[Title],filter.[Rank]
+SELECT c.[Year],c.[MonthOrdinal],c.[WeekOrdinal],filter.[Rank],s.[Title],s.[Id]
 FROM (
 	SELECT [WeekId],[Rank]
 	FROM [SongRanks] 
