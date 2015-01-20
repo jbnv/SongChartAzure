@@ -6,7 +6,7 @@ define(['plugins/router', 'knockout', 'classes/common', 'classes/DataTable', 'cl
         'rank': 'Rank',
         'title': 'Title',
         'artist': "Artist",
-        'score': 'Score', // for month, projected rank
+        'score': 'Score', 
         'debutDate': "Debut Date", // for month, icon if debut
         'debutRank': "Debut Rank",
         'peakRank': "Peak Rank",

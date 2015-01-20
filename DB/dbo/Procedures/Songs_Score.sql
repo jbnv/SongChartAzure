@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[Songs_Score]
 AS
 	UPDATE [Songs] SET [Score] = (
-		SELECT SUM([dbo].[RankToScore]([Rank]))	
+		SELECT SUM([Score])	
 		FROM [SongRanks] 
 		WHERE [SongId]=[Songs].[Id]
 	)
