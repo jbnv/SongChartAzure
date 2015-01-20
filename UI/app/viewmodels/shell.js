@@ -34,7 +34,8 @@
                 //TODO { route: 'genres', title: 'Genres', moduleId: 'viewmodels/genreChart', nav: true },
                 { route: 'topByPeak', title: 'Top by Peak Rank', moduleId: 'viewmodels/songChart', nav: true },
                 { route: 'topByDebut', title: 'Top by Debut Rank', moduleId: 'viewmodels/songChart', nav: true },
-                { route: 'topByDuration', title: 'Top by Longevity', moduleId: 'viewmodels/songChart', nav: true }
+                { route: 'topByDuration', title: 'Top by Longevity', moduleId: 'viewmodels/songChart', nav: true },
+                { route: 'rankConflicts', title: 'Rank Conflicts', moduleId: 'viewmodels/rankConflicts', nav: true }
             ]).buildNavigationModel();
             
             return router.activate();

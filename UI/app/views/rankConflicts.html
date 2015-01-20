@@ -1,0 +1,22 @@
+﻿<h1>Rank Conflicts</h1>
+
+<table class="table table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>Year</th>
+            <th>Month</th>
+            <th>Week</th>
+            <th>Rank</th>
+            <th>Song</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: data">
+        <tr>
+            <td data-bind="text: Year"></td>
+            <td data-bind="text: MonthOrdinal"></td>
+            <td data-bind="text: WeekOrdinal"></td>
+            <td data-bind="text: Rank"></td>
+            <td><a data-bind="attr: { href: 'http://playlists.wikidot.com/'+Fullname }"><span data-bind="text: Title"></span></a></td>
+        </tr>
+    </tbody>
+</table>

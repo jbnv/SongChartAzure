@@ -74,6 +74,12 @@ namespace API
             );
 
             config.Routes.MapHttpRoute(
+                name: "Rank Conflicts",
+                routeTemplate: "rankconflicts",
+                defaults: new { controller = "RankConflicts" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "Other",
                 routeTemplate: "{controller}/{id}"
             );
