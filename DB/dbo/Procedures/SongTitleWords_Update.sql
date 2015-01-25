@@ -25,7 +25,8 @@ AS
 	) s3
 	LEFT OUTER JOIN [dbo].[ReductionWords] reduc  ON reduc.[Word] = s3.[Word]
 	WHERE s3.[Word] NOT IN (
-		'&amp;','a','an','and','are','as','for','in','is','it','its','of','on','the','then','these','those','was','were','with','would'
+		'&amp;','a','an','and','are','as','for','in','is','it','its','of','on',
+		'the','then','these','those','to','was','were','with','would'
 	)
 	ORDER BY [Id]
 

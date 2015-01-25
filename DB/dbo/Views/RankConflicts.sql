@@ -4,6 +4,7 @@ SELECT c.[Year],c.[MonthOrdinal],c.[WeekOrdinal],filter.[Rank],s.[Title],s.[Id],
 FROM (
 	SELECT [WeekId],[Rank]
 	FROM [SongRanks] 
+	WHERE [IsCalculated] = 0 AND [Rank] <= 25
 	GROUP BY [WeekId],[Rank]
 	HAVING COUNT(*) > 1
 ) filter 

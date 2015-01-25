@@ -1,8 +1,8 @@
 ﻿--TODO Implement accelerated scaling.
 CREATE PROCEDURE [dbo].[ProjectRanks]
 AS
-	INSERT INTO [dbo].[SongRanks] ([SongId],[WeekId],[WeekOrdinal],[Rank])
-	SELECT [SongId], [FinalWeekId]+N, [FinalWeekOrdinal]+N, r0.[Rank]*POWER(r0.[Rank]/r1.[Rank],N)
+	INSERT INTO [dbo].[SongRanks] ([SongId],[WeekId],[WeekOrdinal],[Rank],[IsCalculated])
+	SELECT [SongId], [FinalWeekId]+N, [FinalWeekOrdinal]+N, r0.[Rank]*POWER(r0.[Rank]/r1.[Rank],N),1
 	FROM (
 		SELECT [SongId], MAX([WeekId]) AS [FinalWeekId], MAX([WeekOrdinal]) AS [FinalWeekOrdinal]
 		FROM [dbo].[SongRanks]

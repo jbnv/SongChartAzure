@@ -22,7 +22,7 @@ namespace API.Controllers
 
         public List<Artist> Artists { get; private set; }
         public List<Genre> Genres { get; private set; }
-        public List<Word> CommonWords { get; private set; }
+        public List<object> CommonWords { get; private set; }
         public List<string> UniqueWords { get; private set; }
 
         public HomePageData()
@@ -32,7 +32,7 @@ namespace API.Controllers
 
             this.Artists = new List<Artist>();
             this.Genres = new List<Genre>();
-            this.CommonWords = new List<Word>();
+            this.CommonWords = new List<object>();
             this.UniqueWords = new List<string>();
         }
     }
@@ -175,15 +175,12 @@ namespace API.Controllers
             command.CommandType = CommandType.Text;
             command.CommandTimeout = 200;
 
-            //SqlDataReader reader = command.ExecuteReader();
-            //while (reader.Read())
-            //{
-            //    Word o = new Word();
-            //    o.Title = reader.GetString(0);
-            //    o.SongCount = reader.GetInt64(1);
-            //    data.CommonWords.Add(o);
-            //}
-            //reader.Close();
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                data.CommonWords.Add(new  { Title = reader.GetString(0), SongCount = reader.GetInt32(1)  });
+            }
+            reader.Close();
         }
 
         private void Get_UniqueWords(SqlConnection connection, HomePageData data)
